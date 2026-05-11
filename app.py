@@ -5,13 +5,15 @@ app = Flask(__name__)
 app.secret_key = "AbdallahApp"
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+
 chat_history = []
 dataBase = []
 
 @app.route("/")
 def home():
-
-    return render_template("index.html")
+  if "username" in session:
+        return redirect(url_for("chat"))
+  return render_template("index.html")
 
 @app.route("/signIn", methods=["POST", "GET"])
 def signIn():
@@ -67,10 +69,10 @@ def signUp():
 
 @app.route('/chat')
 def chat():
-    if "username" not in session:
-        return redirect(url_for("home"))
-
-    return render_template('app.html', chat_history=chat_history)
+  if "username" not in session:
+    return redirect(url_for("home"))
+  print(chat_history)
+  return render_template('app.html', chat_history=chat_history)
 @socketio.on("myMsg")
 def msg(msg):
     username = session.get("username", "Unknown")
