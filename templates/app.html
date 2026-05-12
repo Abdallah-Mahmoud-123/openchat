@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="main_root" dir="ltr">
 
 <head>
   <meta charset="UTF-8">
@@ -14,9 +14,20 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200..700&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
+   <div class="box" onclick="box()">
+  <h1 id="a">•</h1>
+  <h1 id="b">•</h1>
+  <h1 id="c">•</h1>
+
+ </div>
 
   <div id="msgArea">
     <ul id="ul">
@@ -29,7 +40,7 @@
 
   </div>
   <div class="input">
-    <input oninput="check()" type="text" id="inpMsg" />
+    <textarea oninput="check()" type="text" id="inpMsg" ></textarea>
     <button id="btnSend" disabled>Send</button>
   </div>
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
