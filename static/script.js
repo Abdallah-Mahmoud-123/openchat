@@ -12,7 +12,9 @@ function check() {
     }
 }
 
-const socket = io();
+const socket = io({
+  transports: ['polling']
+});
 function send() {
     let text = msg.value;
     socket.emit("myMsg", text)
